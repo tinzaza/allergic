@@ -1,0 +1,511 @@
+# Thai translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-16 22:05+0700\n"
+"PO-Revision-Date: 2025-11-16 22:21+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: th\n"
+"Language-Team: th <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: app.py:115
+msgid "Username and password are required."
+msgstr ""
+
+#: app.py:127
+msgid "✅ Account created successfully! Please log in."
+msgstr ""
+
+#: app.py:130
+msgid "⚠️ Username already taken — please choose another."
+msgstr ""
+
+#: app.py:133
+msgid "⚠️ Unable to create account. Please try again later."
+msgstr ""
+
+#: app.py:153
+msgid "Logged in successfully!"
+msgstr ""
+
+#: app.py:160
+msgid "Invalid username or password!"
+msgstr ""
+
+#: app.py:194
+msgid "✅ Allergy report submitted successfully!"
+msgstr ""
+
+#: app.py:197
+msgid "⚠️ Failed to submit report. Please try again later."
+msgstr ""
+
+#: app.py:265
+msgid "Logged out successfully!"
+msgstr ""
+
+#: templates/doctor_dashboard.html:5 templates/doctor_dashboard.html:21
+msgid "Doctor Dashboard"
+msgstr ""
+
+#: templates/doctor_dashboard.html:24
+msgid "Search patient name or phone number"
+msgstr ""
+
+#: templates/doctor_dashboard.html:25
+msgid "Search"
+msgstr ""
+
+#: templates/doctor_dashboard.html:38
+msgid "No patients found"
+msgstr ""
+
+#: templates/doctor_dashboard.html:43 templates/patient_form.html:95
+msgid "Logout"
+msgstr ""
+
+#: templates/index.html:5
+msgid "Welcome"
+msgstr ""
+
+#: templates/index.html:15
+msgid "Welcome to the Health Portal"
+msgstr ""
+
+#: templates/index.html:16 templates/signup.html:5 templates/signup.html:37
+msgid "Sign Up"
+msgstr ""
+
+#: templates/index.html:17 templates/login.html:15 templates/login.html:28
+msgid "Log In"
+msgstr ""
+
+#: templates/login.html:5
+msgid "Login"
+msgstr ""
+
+#: templates/login.html:26 templates/signup.html:30
+msgid "Username"
+msgstr ""
+
+#: templates/login.html:27 templates/signup.html:31
+msgid "Password"
+msgstr ""
+
+#: templates/login.html:32
+msgid "Need an account? Sign up"
+msgstr ""
+
+#: templates/patient_detail.html:24
+msgid "Patient Information"
+msgstr ""
+
+#: templates/patient_detail.html:25
+msgid "Phone:"
+msgstr ""
+
+#: templates/patient_detail.html:26
+msgid "Address:"
+msgstr ""
+
+#: templates/patient_detail.html:27
+msgid "Email:"
+msgstr ""
+
+#: templates/patient_detail.html:33
+msgid "Symptom Scores Over Time"
+msgstr ""
+
+#: templates/patient_detail.html:39
+msgid "Back to Dashboard"
+msgstr ""
+
+#: templates/patient_detail.html:50
+msgid "Total Symptom Score"
+msgstr ""
+
+#: templates/patient_form.html:5
+msgid "Allergy Form"
+msgstr ""
+
+#: templates/patient_form.html:33
+msgid "Allergies"
+msgstr ""
+
+#: templates/patient_form.html:47
+msgid "Symptom"
+msgstr ""
+
+#: templates/patient_form.html:56
+msgid "Stuffy Nose"
+msgstr ""
+
+#: templates/patient_form.html:63
+msgid "Itchy Nose"
+msgstr ""
+
+#: templates/patient_form.html:70
+msgid "Runny Nose"
+msgstr ""
+
+#: templates/patient_form.html:77
+msgid "Sneezing"
+msgstr ""
+
+#: templates/patient_form.html:87
+msgid "Additional Feedback:"
+msgstr ""
+
+#: templates/patient_form.html:88
+msgid "Write any other comments..."
+msgstr ""
+
+#: templates/patient_form.html:91
+msgid "Submit"
+msgstr ""
+
+#: templates/signup.html:15
+msgid "Create Account"
+msgstr ""
+
+#: templates/signup.html:26
+msgid "Full Name"
+msgstr ""
+
+#: templates/signup.html:27
+msgid "Phone Number"
+msgstr ""
+
+#: templates/signup.html:28
+msgid "Address"
+msgstr ""
+
+#: templates/signup.html:29
+msgid "Email"
+msgstr ""
+
+#: templates/signup.html:33
+msgid "Select Role"
+msgstr ""
+
+#: templates/signup.html:34
+msgid "Patient"
+msgstr ""
+
+#: templates/signup.html:35
+msgid "Doctor"
+msgstr ""
+
+#: templates/signup.html:41
+msgid "Already have an account? Log in"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/_termui_impl.py:608
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/_termui_impl.py:612
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1104
+#: venv/lib/python3.14/site-packages/click/core.py:1141
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1160
+msgid "Options"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1222
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1241
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1425
+msgid "Aborted!"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1799
+msgid "Commands"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1830
+msgid "Missing command."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:1908
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:2332
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:2355
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:2505
+#, python-brace-format
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is "
+"deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:2956
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:2959
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:2963
+msgid "required"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/core.py:3023
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:50
+#: venv/lib/python3.14/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/parser.py:199
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/parser.py:381
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+
+#: venv/lib/python3.14/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:719
+#, python-brace-format
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:747
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:937
+msgid "file"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:939
+msgid "directory"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:941
+msgid "path"
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:997
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:1005
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:1014
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:1023
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:1032
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/lib/python3.14/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+

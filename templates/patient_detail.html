@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    
+    <style>
+        body {
+            background-color: #f5f8fa;
+            font-family: "Poppins", sans-serif;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .badge-soft {
+            background: #e9f2ff;
+            color: #0d6efd;
+            font-weight: 500;
+        }
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .symptom-table td {
+            padding: 6px 8px;
+        }
+        .symptom-name {
+            width: 70%;
+        }
+        .score {
+            font-weight: 600;
+            color: #0d6efd;
+        }
+        pre {
+            white-space: pre-wrap;
+            font-family: inherit;
+            margin: 0;
+        }
+        .info-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+<div class="container">
+
+    <!-- 🔙 Back -->
+    <a href="{{ url_for('doctor_dashboard') }}" class="btn btn-outline-secondary mb-3">
+        ← Back to Dashboard
+    </a>
+
+    <!-- ================= PATIENT PROFILE ================= -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="mb-1">{{ patient.full_name }}</h4>
+            <div class="text-muted mb-3">Patient ID: {{ patient.id }}</div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="info-label">Email</div>
+                    <div>{{ patient.email or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Phone</div>
+                    <div>{{ patient.phone or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Gender / DOB</div>
+                    <div>
+                        {{ patient.gender or "-" }}
+                        {% if patient.dob %} / {{ patient.dob }}{% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-label">Address</div>
+                    <div>{{ patient.address or "-" }}</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-label">Emergency Contact</div>
+                    <div>{{ patient.emergency_contact or "-" }}</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-label">Insurance Number</div>
+                    <div>
+                        {{ patient.insurance_provider or "-" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-label">Hospital Number</div>
+                    <div>
+                        {{ patient.hospital_number or "-" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= PATIENT HISTORY ================= -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="section-title">Patient History & Environment</div>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <div class="info-label">Symptoms worsen when</div>
+                    <ul class="mb-0">
+                        {% if patient.symptom_worse_morning %}<li>After waking up</li>{% endif %}
+                        {% if patient.symptom_worse_exercise %}<li>Exercise</li>{% endif %}
+                        {% if patient.symptom_worse_dust %}<li>Dust exposure</li>{% endif %}
+                        {% if patient.symptom_worse_other %}<li>Other</li>{% endif %}
+                        {% if not (
+                            patient.symptom_worse_morning or
+                            patient.symptom_worse_exercise or
+                            patient.symptom_worse_dust or
+                            patient.symptom_worse_other
+                        ) %}
+                            <li class="text-muted">-</li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="info-label">Seasonal aggravation</div>
+                    <ul class="mb-0">
+                        {% if patient.season_summer %}<li>Summer</li>{% endif %}
+                        {% if patient.season_rainy %}<li>Rainy</li>{% endif %}
+                        {% if patient.season_winter %}<li>Winter</li>{% endif %}
+                        {% if patient.season_change %}<li>Season change</li>{% endif %}
+                        {% if patient.season_all_year %}<li>All year</li>{% endif %}
+                        {% if not (
+                            patient.season_summer or
+                            patient.season_rainy or
+                            patient.season_winter or
+                            patient.season_change or
+                            patient.season_all_year
+                        ) %}
+                            <li class="text-muted">-</li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="info-label">Duration per year</div>
+                    <div>{{ patient.duration_per_year or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Weekly frequency</div>
+                    <div>{{ patient.weekly_frequency or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Worst time of day</div>
+                    <div>{{ patient.time_of_day or "-" }}</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="info-label">Living area</div>
+                    <div>{{ patient.living_area or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Near main road</div>
+                    <div>{{ patient.near_road or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Housing type</div>
+                    <div>{{ patient.housing_type or "-" }}</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="info-label">Air conditioner in bedroom</div>
+                    <div>{{ patient.air_conditioner or "-" }}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-label">Pets</div>
+                    <div>{{ patient.pet or "-" }}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 📊 VAS Trend -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">VAS Trend Over Time</h5>
+            <canvas id="vasChart" height="120"></canvas>
+        </div>
+    </div>
+
+    <!-- ================= ASSESSMENTS ================= -->
+    <div class="accordion" id="assessmentAccordion">
+
+    {% for r in reports %}
+    <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="heading{{ loop.index }}">
+            <button class="accordion-button {% if not loop.first %}collapsed{% endif %}"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{ loop.index }}"
+                    aria-expanded="{{ 'true' if loop.first else 'false' }}"
+                    aria-controls="collapse{{ loop.index }}">
+
+                <div class="d-flex justify-content-between align-items-center w-100 me-3">
+                    <div>
+                        📅 {{ r.created_at[:10] }}
+                    </div>
+                    <div>
+                        <span class="badge badge-soft me-2">
+                            {{ r.pattern.capitalize() }}
+                        </span>
+                        <span class="badge bg-primary">
+                            VAS {{ r.avg_vas }}
+                        </span>
+                    </div>
+                </div>
+
+            </button>
+        </h2>
+
+        <div id="collapse{{ loop.index }}"
+            class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+            aria-labelledby="heading{{ loop.index }}"
+            data-bs-parent="#assessmentAccordion">
+
+            <div class="accordion-body">
+
+                <!-- 💊 Medicine -->
+                <div class="mb-3">
+                    <div class="section-title">Dispensed Medicine</div>
+                    <div class="bg-light p-3 rounded">
+                        <pre>{{ r.recommendation }}</pre>
+                    </div>
+                </div>
+
+                <!-- 🩺 Symptoms -->
+                <div>
+                    <div class="section-title">Reported Symptoms</div>
+
+                    {% if r.data %}
+                    <table class="table table-sm symptom-table">
+                        <tbody>
+                        {% for key, value in r.data.items() %}
+                            {% if key != "used_steroid_before" %}
+                            <tr>
+                                <td class="symptom-name">
+                                    {{ key.replace("_", " ").title() }}
+                                </td>
+                                <td class="text-end score">
+                                    {{ value }}
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                        <p class="text-muted">No raw symptom data recorded.</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const labels = [
+    {% for v in vas_rows %}
+        "{{ v.date }}",
+    {% endfor %}
+];
+
+const values = [
+    {% for v in vas_rows %}
+        {{ v.avg_vas }},
+    {% endfor %}
+];
+
+if (labels.length > 0) {
+    new Chart(document.getElementById('vasChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'VAS Score',
+                data: values,
+                borderColor: '#6c757d',
+                borderWidth: 2,
+                tension: 0.35,
+
+                // 🔵🔴 POINT COLORS
+                pointBackgroundColor: values.map(v =>
+                    v >= 5 ? '#dc3545' : '#0d6efd'
+                ),
+                pointBorderColor: values.map(v =>
+                    v >= 5 ? '#dc3545' : '#0d6efd'
+                ),
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(ctx) {
+                            const v = ctx.parsed.y;
+                            return `VAS: ${v} (${v >= 5 ? 'Uncontrolled' : 'Controlled'})`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 10,
+                    ticks: {
+                        stepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: 'VAS Score'
+                    }
+                }
+            }
+        }
+    });
+}
+</script>
+
+</body>
+</html>

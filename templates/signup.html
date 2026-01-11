@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="p-4 bg-light">
+<div class="container col-md-8">
+    <h2 class="text-center mb-4">Create Account</h2>
+
+        <!-- FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} text-center">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+
+    <form method="POST" class="row g-3">
+
+        <!-- ================= STEP 1 ================= -->
+        <div id="step1">
+
+            <!-- INTRO -->
+            <div class="mb-4 text-center">
+                <h4 class="mb-1">Patient Registration</h4>
+                <p class="text-muted">
+                    Please enter your basic information below.  
+                    This information will be used for clinical assessment and follow-up.
+                </p>
+            </div>
+
+            <!-- ================= ACCOUNT INFORMATION ================= -->
+            <h6 class="fw-semibold mb-3">Account Information</h6>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">
+                        Full Name <span class="required">*</span>
+                    </label>
+                    <input name="full_name" class="form-control" required>
+                    <small class="text-muted">
+                        This name will be visible to healthcare providers.
+                    </small>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Username <span class="required-star">*</span></label>
+                    <input name="username" class="form-control" required>
+                    <small class="text-muted">
+                        Used to log in to the system.
+                    </small>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Password <span class="required-star">*</span></label>
+                    <input name="password" type="password" class="form-control" required>
+                    <small class="text-muted">
+                        Choose a secure password.
+                    </small>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Role <span class="required-star">*</span></label>
+                    <select name="role" id="roleSelect" class="form-select" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+                </div>
+
+                <!-- Doctor code -->
+                <div class="col-md-6 d-none" id="doctorCodeWrapper">
+                    <label class="form-label">Doctor Signup Code</label>
+                    <input name="doctor_code" type="password" class="form-control">
+                    <small class="text-muted">
+                        Required for doctor registration only.
+                    </small>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- ================= PATIENT INFORMATION ================= -->
+            <h6 class="fw-semibold mb-3 patient-field">Patient Information</h6>
+
+            <div class="row g-3 patient-field">
+
+                <div class="col-md-6">
+                    <label>Email <span class="required-star">*</span></label>
+                    <input name="email" type="email" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Phone Number <span class="required-star">*</span></label>
+                    <input name="phone" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Address <span class="required-star">*</span></label>
+                    <input name="address" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Date of Birth <span class="required-star">*</span></label>
+                    <input name="dob" type="date" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Gender <span class="required-star">*</span></label>
+                    <select name="gender" class="form-select">
+                        <option value="">-</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Emergency Contact <span class="required-star">*</span></label>
+                    <input name="emergency_contact" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Insurance Provider <span class="required-star">*</span></label>
+                    <input name="insurance_provider" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label>Hospital Number <span class="required-star">*</span></label>
+                    <input name="hospital_number" class="form-control">
+                </div>
+
+            </div>
+
+            <!-- NEXT BUTTON -->
+            <div class="col-12 mt-4 patient-field">
+                <button
+                    type="button"
+                    class="btn btn-primary w-100"
+                    onclick="goStep2()"
+                >
+                    Continue to Symptom & Environment Assessment →
+                </button>
+            </div>
+
+            <!-- LOGIN LINK -->
+            <div class="text-center mt-3">
+                <a href="{{ url_for('login') }}" class="text-decoration-none">
+                    Already have an account? <strong>Log in</strong>
+                </a>
+            </div>
+
+
+        </div>
+
+        <!-- ================= STEP 2 ================= -->
+<div id="step2" class="d-none">
+
+    <h4 class="mb-2">🩺 ประวัติอาการและสิ่งแวดล้อม</h4>
+    <p class="text-muted mb-4">
+        กรุณาตอบตามอาการจริงในช่วงที่ผ่านมา เพื่อช่วยประเมินโรคได้แม่นยำขึ้น
+    </p>
+
+    <!-- ================= SYMPTOM TRIGGERS ================= -->
+    <h5>1) อาการเป็นมากขึ้นเมื่อ</h5>
+    <p class="text-muted small">
+        เลือกข้อที่ตรงกับช่วงเวลาหรือปัจจัยที่ทำให้อาการกำเริบชัดเจน
+    </p>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="symptom_worse_morning" value="1">
+        <label class="form-check-label">
+            หลังตื่นนอน
+            <span class="text-muted small">– เช่น คัดจมูก จาม น้ำมูกไหลตอนเช้า</span>
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="symptom_worse_exercise" value="1">
+        <label class="form-check-label">
+            ออกกำลังกาย
+            <span class="text-muted small">– เช่น วิ่ง เดินเร็ว เล่นกีฬา</span>
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="symptom_worse_dust" value="1">
+        <label class="form-check-label">
+            สัมผัสฝุ่น
+            <span class="text-muted small">– ฝุ่นบ้าน ฝุ่นถนน ไรฝุ่น</span>
+        </label>
+    </div>
+
+    <input class="form-control mt-2"
+           name="symptom_worse_other"
+           placeholder="อื่น ๆ (เช่น กลิ่น ควัน สารเคมี)">
+
+    <hr>
+
+    <!-- ================= SEASON ================= -->
+    <h5>ฤดูกาลที่อาการกำเริบ</h5>
+    <p class="text-muted small">
+        สามารถเลือกได้มากกว่า 1 ข้อ หากอาการเป็นในหลายช่วง
+    </p>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="season_summer" value="1">
+        <label class="form-check-label">ฤดูร้อน</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="season_rainy" value="1">
+        <label class="form-check-label">ฤดูฝน</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="season_winter" value="1">
+        <label class="form-check-label">ฤดูหนาว</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="season_all_year" value="1">
+        <label class="form-check-label">เป็นตลอดทั้งปี</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="season_change" value="1">
+        <label class="form-check-label">ช่วงเปลี่ยนฤดู</label>
+    </div>
+
+    <hr>
+
+    <!-- ================= DURATION ================= -->
+    <label class="mt-2 fw-semibold">ระยะเวลาที่มีอาการใน 1 ปี</label>
+    <p class="text-muted small">
+        นับรวมทุกช่วงที่มีอาการในรอบ 1 ปี
+    </p>
+    <select class="form-select" name="duration_per_year">
+        <option value="">-</option>
+        <option>น้อยกว่า 1 เดือนต่อปี</option>
+        <option>1–4 เดือนต่อปี</option>
+        <option>มากกว่า 4 เดือนต่อปี</option>
+    </select>
+
+    <label class="mt-3 fw-semibold">ความถี่ของอาการต่อสัปดาห์</label>
+    <p class="text-muted small">
+        เลือกตามจำนวนวันที่มีอาการในสัปดาห์ทั่วไป
+    </p>
+    <select class="form-select" name="weekly_frequency">
+        <option value="">-</option>
+        <option>น้อยกว่า 3 วัน/สัปดาห์</option>
+        <option>ตั้งแต่ 4 วัน/สัปดาห์ขึ้นไป</option>
+    </select>
+
+    <hr>
+
+    <!-- ================= ENVIRONMENT ================= -->
+    <h5>2) สิ่งแวดล้อมและที่อยู่อาศัย</h5>
+    <p class="text-muted small">
+        ข้อมูลส่วนนี้ช่วยประเมินปัจจัยกระตุ้นจากสภาพแวดล้อม
+    </p>
+
+    <label class="fw-semibold">ลักษณะพื้นที่อยู่อาศัย</label>
+    <select class="form-select" name="living_area">
+        <option value="">-</option>
+        <option>ในเมือง</option>
+        <option>ชานเมือง</option>
+        <option>นอกเมือง</option>
+    </select>
+
+    <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" name="near_road" value="1">
+        <label class="form-check-label">
+            บ้านอยู่ใกล้ถนนใหญ่
+            <span class="text-muted small">– อาจมีฝุ่นหรือมลพิษ</span>
+        </label>
+    </div>
+
+    <label class="mt-3 fw-semibold">ประเภทที่อยู่อาศัย</label>
+    <select class="form-select" name="housing_type">
+        <option value="">-</option>
+        <option>บ้านเดี่ยว</option>
+        <option>ทาวน์เฮาส์</option>
+        <option>แฟลต</option>
+        <option>คอนโด</option>
+    </select>
+
+    <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" name="air_conditioner" value="1">
+        <label class="form-check-label">
+            มีเครื่องปรับอากาศในห้องนอน
+        </label>
+    </div>
+
+    <label class="mt-3 fw-semibold">สัตว์เลี้ยง</label>
+    <p class="text-muted small">
+        เลือกชนิดสัตว์เลี้ยงที่อยู่ในบ้านเป็นประจำ
+    </p>
+    <select class="form-select" name="pet">
+        <option>ไม่มี</option>
+        <option>แมว</option>
+        <option>สุนัข</option>
+        <option>นก</option>
+        <option>อื่น ๆ</option>
+    </select>
+
+    <div class="d-flex gap-2 mt-4">
+        <button type="button"
+                class="btn btn-outline-secondary w-50"
+                onclick="goStep1()">← Back</button>
+        <button type="submit"
+                class="btn btn-success w-50">
+            Submit
+        </button>
+    </div>
+</div>
+
+<script>
+function refreshRoleFields() {
+    const role = document.getElementById("roleSelect").value;
+    const doctor = document.getElementById("doctorCodeWrapper");
+    const patient = document.querySelectorAll(".patient-field");
+
+    if (role === "doctor") {
+        doctor.classList.remove("d-none");
+        patient.forEach(f => f.classList.add("d-none"));
+    } else {
+        doctor.classList.add("d-none");
+        patient.forEach(f => f.classList.remove("d-none"));
+    }
+}
+
+function goStep2() {
+    document.getElementById("step1").classList.add("d-none");
+    document.getElementById("step2").classList.remove("d-none");
+}
+
+function goStep1() {
+    document.getElementById("step2").classList.add("d-none");
+    document.getElementById("step1").classList.remove("d-none");
+}
+
+document.getElementById("roleSelect").addEventListener("change", refreshRoleFields);
+refreshRoleFields();
+</script>
+
+</body>
+</html>
